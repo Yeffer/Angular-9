@@ -1,0 +1,64 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">  
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo01" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+    <a class="navbar-brand" href="#">Registro</a>
+    <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+      <li class="nav-item">
+        <a class="nav-link" href="#">Explorar</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Quienes Somos</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link disabled" href="#">Contactenos</a>
+      </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+      <input class="form-control mr-sm-2" type="search" placeholder="Buscar" aria-label="Buscar">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="Buscar">Buscar</button>
+    </form>
+  </div>
+</nav>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <ul class="list-group mt-4">
+        <li 
+          *ngFor="let employee of employeeArray"
+          class="list-group-item list-group-item-action"
+          (click)="openForEdit(employee)"
+          [class.active]="employee == selectedEmployee"
+          >
+          <span class="badge badge-prymary">{{ employee.id }}</span>
+          {{ employee.name }} - {{ employee.country }} 
+        </li>
+      </ul>
+      <div class="card mt-4">
+        <div class="card-body">
+          <div class="car-tittle">
+            Inserte un nuevo empleado            
+          </div>
+          <div class="form-group">
+            <input type="text" [(ngModel)]="selectedEmployee.name" placeholder="Digite su Nombre" id="" class="form-control"> 
+            <input type="text" [(ngModel)]="selectedEmployee.country" placeholder="Digite su Ciudad" id="" class="form-control"> 
+          </div>
+          <button (click)="addOrEdit()" class="btn btn-primary">
+            Enviar
+          </button>
+          <button 
+            *ngIf="selectedEmployee.id !== 0"
+            class="btn btn-danger"
+            (click)="delete()"
+            >
+            Eliminar
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      
+    </div>
+  </div>
+</div>
